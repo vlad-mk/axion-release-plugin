@@ -5,7 +5,7 @@ import pl.allegro.tech.build.axion.release.domain.scm.ScmPosition
 enum TagNameSerializer {
 
     DEFAULT('default',
-            { TagNameSerializationRules rules, String version ->
+            { TagNameSerializationRules rules, String version, ScmPosition position ->
                 return rules.prefix ? rules.prefix + rules.versionSeparator + version : version
             },
             { TagNameSerializationRules rules, ScmPosition position, String tagName ->

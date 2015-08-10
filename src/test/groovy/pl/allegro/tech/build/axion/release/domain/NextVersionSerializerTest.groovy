@@ -9,7 +9,7 @@ class NextVersionSerializerTest extends Specification {
     
     def "default serializer should append separator and suffix"() {
         when:
-        String version = NextVersionSerializer.DEFAULT.serializer(config, 'release-1.0.0')
+        String version = NextVersionSerializer.DEFAULT.serializer(config, 'release-1.0.0', null)
         
         then:
         version == 'release-1.0.0-beta'

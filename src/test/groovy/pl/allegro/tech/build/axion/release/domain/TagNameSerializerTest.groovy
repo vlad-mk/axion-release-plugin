@@ -12,7 +12,7 @@ class TagNameSerializerTest extends Specification {
         rules.versionSeparator = '-'
 
         expect:
-        TagNameSerializer.DEFAULT.serializer(rules, '0.1.0') == 'release-0.1.0'
+        TagNameSerializer.DEFAULT.serializer(rules, '0.1.0', null) == 'release-0.1.0'
     }
 
     def "default deserializer should read version by stripping off prefix and version separator"() {
@@ -32,7 +32,7 @@ class TagNameSerializerTest extends Specification {
         rules.versionSeparator = '-'
 
         expect:
-        TagNameSerializer.DEFAULT.serializer(rules, '0.1.0') == '0.1.0'
+        TagNameSerializer.DEFAULT.serializer(rules, '0.1.0', null) == '0.1.0'
     }
 
     def "default deserializer should use empty version separator when prefix is empty"() {

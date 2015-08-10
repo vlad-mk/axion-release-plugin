@@ -5,6 +5,7 @@ import org.gradle.api.Project
 import org.gradle.api.logging.Logger
 import pl.allegro.tech.build.axion.release.domain.hooks.ReleaseHooksRunner
 import pl.allegro.tech.build.axion.release.domain.scm.ScmService
+import pl.allegro.tech.build.axion.release.domain.scm.ScmPosition
 
 class Releaser {
 
@@ -26,9 +27,10 @@ class Releaser {
     void release(VersionConfig versionConfig) {
         VersionWithPosition positionedVersion = versionConfig.getRawVersion()
         Version version = positionedVersion.version
+	ScmPosition position = positionedVersion.position
 
         if (notOnTagAlready(positionedVersion) || VersionReadOptions.fromProject(project, versionConfig).forceVersion) {
-            String tagName = versionConfig.tag.serialize(versionConfig.tag, version.toString())
+            String tagName = versionConfig.tag.serialize(versionConfig.tag, version.toString(), position)
 
             if (versionConfig.createReleaseCommit) {
                 logger.quiet("Creating release commit")

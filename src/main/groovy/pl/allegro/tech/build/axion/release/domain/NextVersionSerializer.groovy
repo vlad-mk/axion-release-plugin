@@ -5,7 +5,7 @@ import pl.allegro.tech.build.axion.release.domain.scm.ScmPosition
 enum NextVersionSerializer {
 
     DEFAULT('default',
-    { NextVersionConfig rules, String version ->
+    { NextVersionConfig rules, String version, ScmPosition position ->
         return rules.suffix ? version + rules.separator + rules.suffix : version
     },
     { NextVersionConfig rules, ScmPosition position ->
